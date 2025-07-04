@@ -1,0 +1,112 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.3</version>
+        <relativePath/>
+    </parent>
+
+    <name>backend</name>
+    <groupId>com.custom</groupId>
+    <artifactId>app-backend</artifactId>
+    <version>0.0.0.1-SNAPSHOT</version> <!-- Costumo usar 4 pontos para versionamento a longo prazo -->
+    <packaging>pom</packaging>
+
+    <description>backend workspace for modules</description>
+
+    <modules>
+        <module>app-core</module>
+        <module>app-infra</module>
+        <module>app-persistence</module>
+        <module>app-web</module>
+    </modules>
+
+    <properties>
+        <java.version>21</java.version>
+        <spring.boot.version>3.5.3</spring.boot.version>
+        <jakarta.validation.version>3.1.1</jakarta.validation.version>
+        <postgres.sql.version>42.7.7</postgres.sql.version>
+
+        <!-- Security -->
+        <auth0.version>4.5.0</auth0.version>
+
+        <!-- Ambiente de desenvolvimento -->
+        <open-api.version>2.8.8</open-api.version>
+        <!-- Testes: -->
+        <datafaker.version>2.4.3</datafaker.version>
+        <!-- Junit sendo versionado automaticamente pelo spring entao aqui omitido-->
+        <mockito.jupiter.version>5.18.0</mockito.jupiter.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Dependencias externas para aplicacao com a versao -->
+            <!-- Spring Boot Dependencies -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Jakarta Data Validation -->
+            <dependency>
+                <groupId>jakarta.validation</groupId>
+                <artifactId>jakarta.validation-api</artifactId>
+                <version>${jakarta.validation.version}</version>
+            </dependency>
+
+            <!-- Postgres SQL - banco de dados -->
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgres.sql.version}</version>
+            </dependency>
+
+            <!-- Security -->
+            <!-- JWT auth0 -->
+            <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>${auth0.version}</version>
+            </dependency>
+
+            <!-- Dev env openAPI -->
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${open-api.version}</version>
+            </dependency>
+
+            <!-- Testes: -->
+            <!-- Junit 5 via spring -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring.boot.version}</version> <!-- Deixar o spring lidar com isso sozinho -->
+                <scope>test</scope>
+            </dependency>
+
+            <!-- Mockito jupiter -->
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-junit-jupiter</artifactId>
+                <version>${mockito.jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- DataFaker - Versao moderna da antiga lib Faker -->
+            <dependency>
+                <groupId>net.datafaker</groupId>
+                <artifactId>datafaker</artifactId>
+                <version>${datafaker.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

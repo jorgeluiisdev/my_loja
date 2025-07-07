@@ -10,7 +10,7 @@ public class ProductMapper {
     public ProductEntity toEntity(Product product) {
         ProductEntity productEntity = new ProductEntity();
 
-        productEntity.setName(product.getName());
+        productEntity.setTitle(product.getTitle());
         productEntity.setDescription(product.getDescription());
         productEntity.setPrice(product.getPrice());
         productEntity.setImageUrl(product.getImageUrl());
@@ -22,7 +22,7 @@ public class ProductMapper {
     public Product toModel(ProductEntity productEntity) {
         Product product = new Product();
 
-        product.setName(productEntity.getName());
+        product.setTitle(productEntity.getTitle());
         product.setDescription(productEntity.getDescription());
         product.setPrice(productEntity.getPrice());
         product.setImageUrl(productEntity.getImageUrl());

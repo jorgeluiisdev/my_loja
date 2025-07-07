@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ListProductUseCaseAdapter implements ListProductUseCase {
@@ -19,7 +20,7 @@ public class ListProductUseCaseAdapter implements ListProductUseCase {
     }
 
     @Override
-    public List<Product> execute() {
-        return this.productRepository.findAll();
+    public Map<String, List<Product>> execute() {
+        return this.productRepository.findAllByCategory();
     }
 }

@@ -6,250 +6,75 @@ import Nav from './componets/Nav'
 import Banner from './componets/Banner'
 import Productcard from './componets/Productcard'
 import Footer from './componets/Footer'
+import {getAllProducts} from "./services/RouteServices.jsx";
 
 function App() {
-  
-const products = [
-    {
-  
-      image: ['/imgs/img-loja.png',
-              '/imgs/img-loja1.png'
-            ],
-      title: 'Conjuto Prezada',
-      price: 'R$ 189,00'
-    },
-    {
-  
-      image: '/imgs/img-loja1.png',
-      title: 'Short Lud',
-      price: 'R$ 69,00'
-    },
-    {
-  
-      image: '/imgs/img-loja3.png',
-      title: 'Macaquinho Niurka' ,
-      price: 'R$ 89,90'
-    },
-    {
-  
-      image: '/imgs/img-loja4.png',
-      title: 'Vestido  Simay',
-      price: 'R$ 59,00'
-    },
-    {
-  
-      image: '/imgs/img-loja5.png',
-      title: 'Macaquinho Eva',
-      price: 'R$ 79,00'
-    },
-    {
-  
-      image: '/imgs/img-loja6.png',
-      title: 'Conjunto Vita',
-      price: 'R$ 199,00'
-    },
-    {
-  
-      image: '/imgs/img-loja7.png',
-      title: 'Vestido Sila',
-      price: 'R$ 119,00'
-    },
-    {
-  
-      image: '/imgs/img-loja8.png',
-      title: 'Vestido Tania',
-      price: 'R$ 79,00'
-    },
-    
-  ]
+    const carousel = useRef();
+    const [width, setWidth] = useState(0)
+    const [apiProducts, setProducts] = useState([]);
 
-    
-const sectionShorts = [
-    {
-  
-      image: '/imgs/img-loja.png',
-      title: 'Conjuto Prezada',
-      price: 'R$ 189,00'
-    },
-    {
-  
-      image: '/imgs/img-loja1.png',
-      title: 'Short Lud',
-      price: 'R$ 69,00'
-    },
-    {
-  
-      image: '/imgs/img-loja3.png',
-      title: 'Macaquinho Niurka' ,
-      price: 'R$ 89,90'
-    },
-    {
-  
-      image: '/imgs/img-loja4.png',
-      title: 'Vestido  Simay',
-      price: 'R$ 59,00'
-    },
-    {
-  
-      image: '/imgs/img-loja5.png',
-      title: 'Macaquinho Eva',
-      price: 'R$ 79,00'
-    },
-    {
-  
-      image: '/imgs/img-loja6.png',
-      title: 'Conjunto Vita',
-      price: 'R$ 199,00'
-    },
-    {
-  
-      image: '/imgs/img-loja7.png',
-      title: 'Vestido Sila',
-      price: 'R$ 119,00'
-    },
-    {
-  
-      image: '/imgs/img-loja8.png',
-      title: 'Vestido Tania',
-      price: 'R$ 79,00'
-    },
-    
-  ];
+    useEffect(() => {
+        setWidth(carousel.current?.scrollWidth - carousel.current?.offsetWidth)
+
+        async function fetchProducts() {
+            try {
+                const data = await getAllProducts(0, 10); // Sem paginação ainda
+                console.log('Dados recebidos do backend:', data);  // <-- Aqui
+                setProducts(data);
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        fetchProducts();
+    }, []);
 
 
-  const sectionSet = [
-    {
-  
-      image: '/imgs/img-loja.png',
-      title: 'Conjuto Prezada',
-      price: 'R$ 189,00'
-    },
-    {
-  
-      image: '/imgs/img-loja1.png',
-      title: 'Short Lud',
-      price: 'R$ 69,00'
-    },
-    {
-  
-      image: '/imgs/img-loja3.png',
-      title: 'Macaquinho Niurka' ,
-      price: 'R$ 89,90'
-    },
-    {
-  
-      image: '/imgs/img-loja4.png',
-      title: 'Vestido  Simay',
-      price: 'R$ 59,00'
-    },
-    {
-  
-      image: '/imgs/img-loja5.png',
-      title: 'Macaquinho Eva',
-      price: 'R$ 79,00'
-    },
-    {
-  
-      image: '/imgs/img-loja6.png',
-      title: 'Conjunto Vita',
-      price: 'R$ 199,00'
-    },
-    {
-  
-      image: '/imgs/img-loja7.png',
-      title: 'Vestido Sila',
-      price: 'R$ 119,00'
-    },
-    {
-  
-      image: '/imgs/img-loja8.png',
-      title: 'Vestido Tania',
-      price: 'R$ 79,00'
-    },
-    
-  ];
+    // TODO : Arrumar a posição dos menus de categoria
+    return (
+        <div>
+            <header className='top-header w-full h-40'>
+                <Banner />
+            </header>
+            <Nav />
+            <main className='main-content w-full h-full'>
+                <div className='box-text h-10 mt-10 text-center md:mt-25'>
+                    <h3 className='text text-xl md:text-3xl'>Nossas ofertas para você</h3>
+                </div>
 
-
-  const carousel = useRef();
-  const [width, setWidth] = useState(0)
-   
-  useEffect(() => {
-    console.log(carousel.current?.scrollWidth, carousel.current?.offsetWidth)
-    setWidth(carousel.current?.scrollWidth - carousel.current?.offsetWidth)
-  }, [])
-
-  return (
-    <div>
-      <header className='top-header w-full h-40  '>
-         <Banner />
-      </header>
-      <Nav />
-      <main className='main-content w-full h-full '>
-         <div className='box-text h-10 mt-10  text-center md:mt-25' >
-            <h3 className='text text-xl md:text-3xl'>Nossas ofertas para você</h3>
-         </div>
-         
-            <_motion.div ref={carousel} className="product-container w-full h-110 border-b-blue-700 mt-7
-              md:w-full md:mt-20"  whileTap={{cursor: "grabbing"}} >
-              <_motion.div className="product-list w-full h-full flex
-                 md:justify-start md:w-680 md:h-100 md:mt-10 md:ml-4"  drag="x" dragConstraints={{right: 0, left: -width}} >
-                {products.map((produto, index) => (
-                  <Productcard
-                  key={index}
-                  image={produto.image}
-                  title={produto.title}
-                  price={produto.price}
-                  
-                  />
-
+                {apiProducts.map((category, catIndex) => (
+                    <section key={catIndex} className="mb-10">
+                        <h2 className="section-title text-xl md:text-3xl text-center mb-4">{category.categoryName}</h2>
+                        <_motion.div
+                            ref={carousel}
+                            className="product-container w-full h-110 border-b-blue-700 mt-7 md:w-full md:mt-20"
+                            whileTap={{ cursor: "grabbing" }}
+                        >
+                            <_motion.div
+                                className="product-list w-full h-full flex md:justify-start md:w-680 md:h-100 md:mt-10 md:ml-4"
+                                drag="x"
+                                dragConstraints={{ right: 0, left: -width }}
+                            >
+                                {category.products.map((product, index) => (
+                                    <Productcard
+                                        key={index}
+                                        image={product.imageUrl}
+                                        title={product.name}
+                                        price={new Intl.NumberFormat('pt-BR', {
+                                            style: "currency",
+                                            currency: "BRL",
+                                        }).format(Number(product.price))}
+                                    />
+                                ))}
+                            </_motion.div>
+                        </_motion.div>
+                    </section>
                 ))}
-                
-              </_motion.div>
-           
-            </_motion.div>
-            
-            <div className="section-header  text-center mt-5 md:mt-45">
-              <h2 className="section-title text-xl md:text-3xl">Mais ofertas para você</h2>
-            </div>
 
-              <_motion.div className="product-container w-97 h-100
-               mt-13 md:mt-30"  whileTap={{cursor: "grabbing"}}>
-                <_motion.div className="product-list w-full h-full flex
-                 md:justify-start md:w-440  md:h-100 md:mt-10 md:ml-4" drag="x" dragConstraints={{right: 0, left: -width}} >
-                  {sectionShorts.map((produto, index) => (
-                    <Productcard
-                      key={index}
-                      image={produto.image}
-                      title={produto.title}
-                      price={produto.price}
-                    />
-                  ))}
-              </_motion.div>
-          </_motion.div>
-
-            
-            <div className="section-header  text-center mt-10 md:mt-55">
-              <h2 className="section-title text-xl md:text-3xl">Mais ofertas para você</h2>
-            </div>
-
-              <_motion.div className="product-container w-97 h-100
-               mt-13 md:mt-35"  whileTap={{cursor: "grabbing"}}>
-                <_motion.div className="product-list w-full h-full flex
-                 md:justify-start md:w-440  md:h-100 md:mt-10 md:ml-4" drag="x" dragConstraints={{right: 0, left: -width}} >
-                  {sectionSet.map((produto, index) => (
-                    <Productcard
-                      key={index}
-                      image={produto.image}
-                      title={produto.title}
-                      price={produto.price}
-                    />
-                  ))}
-              </_motion.div>
-          </_motion.div>
-      </main>
-      <Footer />
-    </div>
-  )
+            </main>
+            <Footer />
+        </div>
+    )
 }
 
 export default App

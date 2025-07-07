@@ -1,7 +1,7 @@
 package com.custom.app.web.controller;
 
-import com.custom.app.core.model.Product;
-import com.custom.app.core.usecase.product.ListProductUseCase;
+import com.custom.app.web.dto.response.CategoryProductsResponse;
+import com.custom.app.web.services.ProductServices;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,24 +17,24 @@ import java.util.List;
 @RequestMapping("/api/products")
 public class ProductController {
 
-    private final ListProductUseCase listProductUseCase;
+    private final ProductServices services;
 
     @Autowired
     public ProductController(
-            ListProductUseCase listProductUseCase
+            ProductServices services
     ) {
-        this.listProductUseCase = listProductUseCase;
+        this.services = services;
     }
 
     @Operation(
-            summary = "Retorna uma lista de produtos",
-            description = "Não recebe nada e retorna uma uma Lista de Produtos"
+            summary = "Retorna uma lista de produtos agrupador por categoria",
+            description = "Não recebe nada como parâmetro e retorna uma uma Lista de Produtos agrupados por categoria"
 //            security = @SecurityRequirement(name = "bearerAuth") // Não precisa de autenticação
     )
     @GetMapping("/list-all")
-    public ResponseEntity<List<Product>> getAllProducts() {
-        List<Product> products = this.listProductUseCase.execute();
-        return ResponseEntity.ok(products); // TODO | Falta transformar para o dto de resposta depois…
+    public ResponseEntity<List<CategoryProductsResponse>> getAllProducts() {
+        List<CategoryProductsResponse> responses = this.services.getCategoryProducts();
+        return ResponseEntity.ok(responses);
     }
 
     // Acesse: http://localhost:8080/swagger-ui/index.html

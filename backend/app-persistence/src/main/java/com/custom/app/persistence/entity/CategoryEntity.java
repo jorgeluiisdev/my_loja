@@ -1,10 +1,9 @@
 package com.custom.app.persistence.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -13,6 +12,9 @@ public class CategoryEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String name;
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProductEntity> products = new ArrayList<>();
 
     public UUID getId() {
         return id;
@@ -28,5 +30,13 @@ public class CategoryEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<ProductEntity> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<ProductEntity> products) {
+        this.products = products;
     }
 }

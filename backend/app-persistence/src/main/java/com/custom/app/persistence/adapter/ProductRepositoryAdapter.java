@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -60,6 +61,20 @@ public class ProductRepositoryAdapter implements ProductRepository {
     }
 
     @Override
+    public Map<String, List<Product>> findAllByCategory() {
+        List<ProductEntity> entities = this.jpaRepository.findAllWithCategory();
+
+        return entities.stream()
+                .collect(Collectors.groupingBy(
+                        entity -> entity.getCategory().getName(),
+                        Collectors.mapping(
+                                this.mapper::toModel,
+                                Collectors.toList()
+                        )
+                ));
+    }
+
+    @Override
     public Optional<Product> findById(UUID productId) {
         return this.jpaRepository.findById(productId)
                 .map(this.mapper::toModel);
@@ -72,8 +87,8 @@ public class ProductRepositoryAdapter implements ProductRepository {
     }
 
     @Override
-    public Optional<Product> findByName(String productName) {
-        return this.jpaRepository.findByName(productName)
+    public Optional<Product> findByTitle(String productTitle) {
+        return this.jpaRepository.findByTitle(productTitle)
                 .map(this.mapper::toModel);
     }
 }

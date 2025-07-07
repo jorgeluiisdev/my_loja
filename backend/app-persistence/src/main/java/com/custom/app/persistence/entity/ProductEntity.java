@@ -1,9 +1,6 @@
 package com.custom.app.persistence.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -13,12 +10,16 @@ public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    private String name;
+    private String title;
     private String description;
     private BigDecimal price;
     private String imageUrl;
     // (Stock Keeping Unit) ou (Unidade de Manutenção de Estoque)
     private String sku;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private CategoryEntity category;
 
     public UUID getId() {
         return id;
@@ -28,12 +29,12 @@ public class ProductEntity {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -66,5 +67,13 @@ public class ProductEntity {
 
     public void setSku(String sku) {
         this.sku = sku;
+    }
+
+    public CategoryEntity getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryEntity category) {
+        this.category = category;
     }
 }

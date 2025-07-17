@@ -23,6 +23,7 @@
         <module>app-core</module>
         <module>app-infra</module>
         <module>app-persistence</module>
+        <module>app-security</module>
         <module>app-web</module>
     </modules>
 
@@ -31,6 +32,7 @@
         <spring.boot.version>3.5.3</spring.boot.version>
         <jakarta.validation.version>3.1.1</jakarta.validation.version>
         <postgres.sql.version>42.7.7</postgres.sql.version>
+        <flywaydb.core>11.8.2</flywaydb.core>
 
         <!-- Security -->
         <auth0.version>4.5.0</auth0.version>
@@ -67,6 +69,13 @@
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>
                 <version>${postgres.sql.version}</version>
+            </dependency>
+
+            <!-- Flyway - migrations -->
+            <dependency>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-core</artifactId>
+                <version>${flywaydb.core}</version>
             </dependency>
 
             <!-- Security -->

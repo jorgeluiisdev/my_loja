@@ -8,9 +8,9 @@ import java.util.UUID;
 
 public interface CategoryRepository {
     Category save(Category category);
-    Category update(Category category);
-    void delete(Category category);
+    Category update(UUID existingCategoryId, Category category);
+    void delete(UUID existingCategoryId);
     List<Category> findAll();
-    Category findById(UUID categoryId);
+    Optional<Category> findById(UUID categoryId);
     Optional<Category> findByName(String name);
 }

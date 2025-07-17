@@ -1,10 +1,12 @@
 package com.custom.app.core.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class Banner {
     private UUID id;
-    private String imageUrl;
+    private List<Image> images = new ArrayList<>();
 
     public UUID getId() {
         return id;
@@ -14,11 +16,11 @@ public class Banner {
         this.id = id;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public List<Image> getImages() {
+        return images;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 }

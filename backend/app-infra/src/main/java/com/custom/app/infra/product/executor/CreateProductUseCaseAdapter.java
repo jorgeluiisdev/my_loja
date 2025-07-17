@@ -17,7 +17,7 @@ public class CreateProductUseCaseAdapter implements CreateProductUseCase {
     }
 
     @Override
-    public Product execute(Product product) {
+    public Product createProduct(Product product) {
         return this.productRepository.save(product);
     }
 }

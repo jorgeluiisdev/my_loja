@@ -20,7 +20,12 @@ public class ListProductUseCaseAdapter implements ListProductUseCase {
     }
 
     @Override
-    public Map<String, List<Product>> execute() {
+    public List<Product> listAllProducts() {
+        return this.productRepository.findAll();
+    }
+
+    @Override
+    public Map<String, List<Product>> listProductsByCategory() {
         return this.productRepository.findAllByCategory();
     }
 }

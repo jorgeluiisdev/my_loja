@@ -1,9 +1,6 @@
 package com.custom.app.persistence.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.UUID;
 
@@ -18,7 +15,13 @@ public class UserEntity {
     private String lastName;
     private String email;
     private String phone;
-    private String imageUrl;
+
+    @Column(name = "refresh_token_hash", length = 512)
+    private String refreshTokenHash;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "user_image_id")
+    private ImageEntity profileImage;
 
     public UUID getId() {
         return id;
@@ -76,11 +79,19 @@ public class UserEntity {
         this.phone = phone;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getRefreshTokenHash() {
+        return refreshTokenHash;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setRefreshTokenHash(String refreshTokenHash) {
+        this.refreshTokenHash = refreshTokenHash;
+    }
+
+    public ImageEntity getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(ImageEntity profileImage) {
+        this.profileImage = profileImage;
     }
 }

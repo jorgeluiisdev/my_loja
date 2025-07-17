@@ -10,15 +10,19 @@ public class CategoryMapper {
     public CategoryEntity toEntity(Category category) {
         CategoryEntity categoryEntity = new CategoryEntity();
 
-        categoryEntity.setName(categoryEntity.getName());
+        if (category.getId() != null) {
+            categoryEntity.setId(category.getId());
+        }
+        categoryEntity.setName(category.getName().toUpperCase()); //todas as categorias sempre uppercase
 
         return categoryEntity;
     }
 
-    public Category toModel(CategoryEntity categoryEntity) {
+    public Category toDomain(CategoryEntity categoryEntity) {
         Category category = new Category();
 
-        category.setName(categoryEntity.getName());
+        category.setId(categoryEntity.getId());
+        category.setName(categoryEntity.getName().toUpperCase());
 
         return category;
     }

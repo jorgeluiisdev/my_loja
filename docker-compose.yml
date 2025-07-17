@@ -8,6 +8,7 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
   app:
     build: .
     container_name: app-web-vitrine
@@ -22,13 +23,13 @@ services:
 #      INIT_USER_LOGIN: ${INIT_USER_LOGIN}
 #      INIT_USER_PASSWORD: ${INIT_USER_PASSWORD}
       #Spring profile e datasource
-      SPRING_PROFILES_ACTIVE: development
+      SPRING_PROFILES_ACTIVE: production
       SPRING_DATASOURCE_URL: jdbc:postgresql://db-postgres:5432/${DB_POSTGRES}
     ports:
       - "8080:8080"
     depends_on:
       - db-postgres
-#      volumes:
-#        - ./uploads:/app/uploads  #Para futuras imagens
+    volumes:
+      - ./uploads:/app/uploads
 volumes:
   postgres_data:

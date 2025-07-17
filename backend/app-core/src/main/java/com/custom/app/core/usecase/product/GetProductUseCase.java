@@ -6,5 +6,5 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface GetProductUseCase {
-    Optional<Product> execute(UUID productId);
+    Optional<Product> findById(UUID productId);
 }

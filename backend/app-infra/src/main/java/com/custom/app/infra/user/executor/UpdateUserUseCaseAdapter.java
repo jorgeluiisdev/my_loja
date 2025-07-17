@@ -10,7 +10,7 @@ import java.util.UUID;
 public class UpdateUserUseCaseAdapter implements UpdateUserUseCase {
 
     @Override
-    public User execute(UUID userId, User user) {
+    public User execute(User user) {
         return null;
     }
 }

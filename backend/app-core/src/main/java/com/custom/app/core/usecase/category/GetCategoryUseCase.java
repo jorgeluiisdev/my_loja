@@ -6,5 +6,5 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface GetCategoryUseCase {
-    Optional<Category> execute(UUID categoryId);
+    Optional<Category> findById(UUID categoryId);
 }

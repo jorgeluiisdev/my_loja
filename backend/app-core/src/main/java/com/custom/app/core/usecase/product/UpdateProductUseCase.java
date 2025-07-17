@@ -5,5 +5,5 @@ import com.custom.app.core.model.Product;
 import java.util.UUID;
 
 public interface UpdateProductUseCase {
-    Product execute(UUID productId, Product product);
+    Product updateProduct(UUID productId, Product product);
 }

@@ -6,5 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 public interface ListProductUseCase {
-    Map<String, List<Product>> execute();
+    List<Product> listAllProducts();
+    Map<String, List<Product>> listProductsByCategory();
 }

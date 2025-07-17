@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public interface ProductRepository {
     Product save(Product product);
-    Product update(Product product);
+    Product update(UUID existingProductId, Product product);
     void delete(UUID existingProductId);
     List<Product> findAll();
     Map<String, List<Product>> findAllByCategory();

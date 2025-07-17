@@ -10,7 +10,8 @@ public class User {
     private String lastName;
     private String email;
     private String phone;
-    private String imageUrl;
+    private Image profileImage;
+    private String refreshTokenHash;
 
     public UUID getId() {
         return id;
@@ -68,11 +69,19 @@ public class User {
         this.phone = phone;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public Image getProfileImage() {
+        return profileImage;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setProfileImage(Image profileImage) {
+        this.profileImage = profileImage;
+    }
+
+    public String getRefreshTokenHash() {
+        return refreshTokenHash;
+    }
+
+    public void setRefreshTokenHash(String refreshTokenHash) {
+        this.refreshTokenHash = refreshTokenHash;
     }
 }

@@ -1,3 +1,34 @@
+@echo off
+setlocal
+
+set "JAVA_HOME="
+
+for /r "%USERPROFILE%" %%F in (java.exe) do (
+    set "javaPath=%%F"
+    call :check_java_path
+    if defined JAVA_HOME goto found_java
+)
+
+echo ERROR: Could not find java.exe under %USERPROFILE%
+goto end
+
+:check_java_path
+    setlocal enabledelayedexpansion
+    set "path=!!javaPath!!"
+    for %%A in ("!path!") do (
+        set "javaDir=%%~dpA"
+    )
+    set "javaDir=!javaDir:~0,-4!"
+    endlocal & set "JAVA_HOME=%javaDir%"
+    exit /b
+
+:found_java
+echo Found java at %JAVA_HOME%
+
+:end
+
+@REM Código acima feito manualmente
+
 @REM ----------------------------------------------------------------------------
 @REM Licensed to the Apache Software Foundation (ASF) under one
 @REM or more contributor license agreements.  See the NOTICE file

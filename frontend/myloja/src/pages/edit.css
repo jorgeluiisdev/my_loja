@@ -1,0 +1,142 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  background-color: white;
+}
+
+
+
+header{
+ border-bottom: 2px solid #ccc;
+ width: 100vw;
+ height: 60px;
+ display: flex;
+ justify-content: space-around;
+ align-items: center;
+}
+
+
+a{
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: 1px;
+}
+
+
+nav{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+nav ul{
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+
+nav ul li{
+  margin: 0 65px;
+  font-size: 19px;
+  cursor: pointer;
+}
+
+
+main{
+  width: 100%;
+  height: 100%;
+}
+
+
+.edit-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fbfbf8;
+  box-shadow: rgb(0, 0, 0) 0px 5px 15px;
+  margin: 40px 0;
+  border-radius: 10px;
+}
+
+
+.btn-add-products{
+  border: 1px solid #ccc;
+  width: 180px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 3px;
+  margin: 14px 29px; 
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.btn-add-products button{
+  width: 30px;
+  height: 20px;
+  border: none;
+  background-color: transparent;
+  font-size: 30px;
+  margin-bottom: 12px;
+  margin-left: 10px;
+}
+
+.edit{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  margin: 10px 30px;
+  gap: 30px;
+}
+
+
+.image{
+  width: 90%;
+  border: 2px solid #ccc;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.image img{
+  border: 1px solid #ccc;
+  max-width: 150px;
+ cursor: pointer;
+}
+
+
+.edit-group{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+.edit-group .description{
+  width: 350px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+
+.submit{ 
+  width: 150px;
+  height:30px;
+  cursor: pointer;
+}

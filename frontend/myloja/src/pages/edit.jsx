@@ -3,8 +3,8 @@ import './edit.css'
 
 const Page = () => {
   return (
-    <div className='containeredit'>
-      <header>
+    <div className='container-crm'>
+      <header className="crm-header">
         <a href="#">CRM da Loja</a>
         <nav>
           <ul>
@@ -22,7 +22,7 @@ const Page = () => {
           </div>
           <div className='edit'>
             <div className='image'>
-              <img src="src/imgs/casaco.jpg" alt="" />
+              <img src="/imgs/img-loja1.png" alt="" />
               <div className='edit-group'>
                 <input className='description' type="text" placeholder='Descricão do produto' />
                 <input className='submit' type="text" placeholder='Preço do produto' />
@@ -30,7 +30,7 @@ const Page = () => {
             </div>
 
             <div className='image'>
-              <img src="src/imgs/casaco.jpg" alt="" />
+              <img src="/imgs/img-loja.png" alt="" />
               <div className='edit-group'>
                 <input className='description' type="text" placeholder='Descricão do produto' />
                 <input className='submit' type="text" placeholder='Preço do produto' />
@@ -39,7 +39,7 @@ const Page = () => {
 
             
             <div className='image'>
-              <img src="src/imgs/casaco.jpg" alt="" />
+              <img src="/imgs/img-loja8.png" alt="" />
               <div className='edit-group'>
                 <input className='description' type="text" placeholder='Descricão do produto' />
                 <input className='submit' type="text" placeholder='Preço do produto' />

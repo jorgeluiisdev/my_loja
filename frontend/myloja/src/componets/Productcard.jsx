@@ -14,8 +14,8 @@ const ProductCard = ({ images, title, price }) => {
   const imagens = Array.isArray(images) ? images : [images];
 
   return (
-      <section className="product-card w-48 h-107 border-1 border-amber-400-500 rounded-md ml-6 md:w-70 md:h-110 md:ml-7 md:border-0 ">
-        <div className="product-content  w-48 flex justify-between flex-col md:w-full">
+      <section className="product-card">
+        <div className="product-content">
           <Swiper
               modules={[Navigation]}
               navigation
@@ -26,7 +26,7 @@ const ProductCard = ({ images, title, price }) => {
             {imagens.map((imgUrl, index) => (
                 <SwiperSlide key={index}>
                   <img
-                      className="product-image w-90 rounded-md cursor-pointer transition-transform duration-300 hover:scale-102 md:w-86 md:h-100 md:mt-5 md:ml-8"
+                      className="product-image"
                       src={imgUrl}
                       alt={`${title} - Imagem ${index + 1}`}
                   />
@@ -34,11 +34,11 @@ const ProductCard = ({ images, title, price }) => {
             ))}
           </Swiper>
 
-          <p className="product-title ml-4 mt-3 text-lg md:text-xl md:mt-1  md:text-center">{title}</p>
-          <h3 className="product-price ml-12 mt-5 text-lg md:text-xl md:mt-1 md:ml-0 md:text-center">{price}</h3>
+          <p className="product-title">{title}</p>
+          <h3 className="product-price">{price}</h3>
           <button
               onClick={() => abrirWhatsApp(title)}
-              className="contact-button w-38 h-9 bg-emerald-500 ml-4 mt-10 rounded-xl cursor-pointer md:w-57 md:ml-11 md:mt-3"
+              className="contact-button"
           >
             Entrar em contato
           </button>

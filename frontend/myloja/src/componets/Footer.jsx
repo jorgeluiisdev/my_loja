@@ -4,10 +4,9 @@ import { FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <div className='footer w-full h-full bg-zinc-200 text-white p-4 mt-20
-    md:h-100 md:mt-75'>
-       <div className="container-footer flex justify-around" >
-         <div className="about  md:mt-21">
+    <div className='footer'>
+       <div className="container-footer" >
+         <div className="about">
              <ul>
                <li>Quem somos</li>
                <li>Contato</li>
@@ -16,7 +15,7 @@ const Footer = () => {
              </ul>
          </div>
 
-         <div className="social-media flex flex-col justify-center items-center ml-23 md:mt-21 ">
+         <div className="social-media">
             <h3>SIGA-NOS</h3>
            <ul>
               <li><FaFacebookSquare/></li>
@@ -26,7 +25,7 @@ const Footer = () => {
         </div>
        </div>
        <hr />
-        <div className="right mt-10 text-center cursor-pointer md:mt-20">
+        <div className="rights">
             <p>© 2025 Veloz Motors. Todos os direitos reservados.</p>
         </div>
     </div>

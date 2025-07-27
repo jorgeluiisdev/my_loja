@@ -3,11 +3,11 @@ import './login.css'
 
 const Form = () => {
   return (
-    <div className='container'>
+    <div className='login-container'>
         <form>
             <div className='user-image'>
                 <div className='box-img'>
-                    <img src="src/imgs/avatar.png" alt="" />
+                    <img src="/imgs/avatar.png" alt="default-profile-img" />
                 </div>
                 <h3>Lucas</h3>
             </div>

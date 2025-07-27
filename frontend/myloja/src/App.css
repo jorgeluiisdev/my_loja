@@ -1,0 +1,168 @@
+/* Header contains Banner */
+.top-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.banner {
+    display: flex;
+}
+
+.img-banner {
+    width: 100%;
+}
+
+.img-banner img {
+    width: 100%;
+    height: 85vh;
+    object-fit: cover;
+}
+
+/* Nav-bar menu */
+.nav {
+    width: 100%;
+}
+
+.nav-list {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+/* Stage product  */
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content h3, h2 {
+    margin-top: 5vh;
+    margin-bottom: 0.5vh;
+    text-align: center;
+}
+
+.nav-list li {
+    padding-left: 25px;
+    cursor: pointer;
+    margin-right: 25px;
+    transition: all 0.3s ease;
+}
+
+.nav-list li:hover{
+    color: #6a6a6a;
+}
+
+/* Products */
+
+.product-card {
+    width: 16vw;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-left: 5vh;
+    padding: 0.5vh;
+}
+
+.product-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.product-image {
+    width: 100%;
+    height: 45vh;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.product-title {
+    font-size: 16px;
+    text-align: center;
+}
+
+.product-price, h3 {
+    margin-top: unset !important;
+    font-size: 15px;
+    text-align: center;
+}
+
+.contact-button {
+    width: 97%;
+    align-self: center;
+    padding: 8px;
+    margin-bottom: 0.5vh;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+/* Footer */
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background-color: #e4e4e7;
+    color: #000000;
+    padding: 1rem;
+    margin-top: 5rem;
+}
+
+.container-footer {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 2vh;
+}
+
+.about {
+    font-size: 19px;
+    margin-right: 2rem;
+    margin-top: 3rem;
+}
+
+.about li {
+    font-size: 14px;
+    margin-top: 5px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.about li:hover {
+    color: #64dfdc;
+}
+
+.social-media {
+    display: flex;
+    flex-direction: column;
+    margin-right: 2rem;
+    margin-top: 3rem;
+}
+
+.social-media li:hover {
+    color: #6a6a6a;
+}
+
+.social-media h3 {
+    font-size: 14px;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.social-media li {
+    font-size: 19px;
+    margin-top: 5px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.rights {
+    height: 50px;
+    cursor: pointer;
+}

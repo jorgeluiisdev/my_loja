@@ -10,7 +10,6 @@ import jakarta.persistence.EntityNotFoundException;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -36,7 +35,6 @@ public class ProductRepositoryAdapter implements ProductRepository {
         this.mapper = productMapper;
     }
 
-    @Transactional
     @Override
     public Product save(Product product) {
         if (product.getId() != null) {
@@ -54,7 +52,6 @@ public class ProductRepositoryAdapter implements ProductRepository {
         return this.mapper.toDomain(savedEntity);
     }
 
-    @Transactional
     @Override
     public Product update(UUID existingProductId, Product product) {
         if (product.getId() == null) {
@@ -72,7 +69,6 @@ public class ProductRepositoryAdapter implements ProductRepository {
         return this.mapper.toDomain(updatedEntity);
     }
 
-    @Transactional
     @Override
     public void delete(UUID existingProductId) {
         if (existingProductId == null) {
@@ -81,7 +77,6 @@ public class ProductRepositoryAdapter implements ProductRepository {
         this.jpaRepository.deleteById(existingProductId);
     }
 
-    @Transactional(readOnly = true)
     @Override
     public List<Product> findAll() {
         List<ProductEntity> entities = this.jpaRepository.findAll();
@@ -90,7 +85,6 @@ public class ProductRepositoryAdapter implements ProductRepository {
                 .collect(Collectors.toList());
     }
 
-    @Transactional(readOnly = true)
     @Override
     public Map<String, List<Product>> findAllByCategory() {
         List<ProductEntity> entities = this.jpaRepository.findAllWithCategory();
@@ -103,9 +97,8 @@ public class ProductRepositoryAdapter implements ProductRepository {
                 ));
     }
 
-    @Transactional(readOnly = true)
     public Optional<Product> findById(UUID productId) {
-        return jpaRepository.findById(productId)
+        return this.jpaRepository.findById(productId)
                 .map(productEntity -> {
                     Hibernate.initialize(productEntity.getImages());
                     return mapper.toDomain(productEntity);

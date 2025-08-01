@@ -24,8 +24,12 @@ public class ProductResponseMapper {
         productResponse.setTitle(product.getTitle());
         productResponse.setDescription(product.getDescription());
         productResponse.setPrice(product.getPrice());
-        productResponse.setImagens(product.getImages());
+        for (Image images :product.getImages()) {
+            images.setPathImage("");
+            productResponse.setImagens(product.getImages());
+        }
         productResponse.setSku(product.getSku());
+        productResponse.setCategoryId(product.getCategory().getId().toString());
 
         return productResponse;
     }

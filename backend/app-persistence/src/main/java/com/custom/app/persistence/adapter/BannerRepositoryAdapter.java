@@ -6,7 +6,6 @@ import com.custom.app.persistence.entity.BannerEntity;
 import com.custom.app.persistence.mapepr.BannerMapper;
 import com.custom.app.persistence.repository.BannerJpaRepository;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -30,7 +29,6 @@ public class BannerRepositoryAdapter implements BannerRepository {
         this.mapper = mapper;
     }
 
-    @Transactional
     @Override
     public Banner save(Banner banner) {
         if (banner.getId() != null) {
@@ -41,7 +39,6 @@ public class BannerRepositoryAdapter implements BannerRepository {
         return this.mapper.toDomain(savedBanner);
     }
 
-    @Transactional
     @Override
     public Banner update(UUID existingBannerId, Banner banner) {
         if (existingBannerId == null || existingBannerId.equals(banner.getId())) {
@@ -52,7 +49,6 @@ public class BannerRepositoryAdapter implements BannerRepository {
         return this.mapper.toDomain(savedBanner);
     }
 
-    @Transactional
     @Override
     public void delete(UUID existingBannerId) {
         if (existingBannerId == null) {

@@ -17,6 +17,7 @@ public class ProductResponse {
     private BigDecimal price;
     List<Image> imagens;
     private String sku;
+    private String categoryId;
 
     public String getTitle() {
         return title;
@@ -56,5 +57,13 @@ public class ProductResponse {
 
     public void setSku(String sku) {
         this.sku = sku;
+    }
+
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
     }
 }

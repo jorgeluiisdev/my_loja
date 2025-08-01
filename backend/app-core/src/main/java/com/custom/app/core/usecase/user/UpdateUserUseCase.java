@@ -5,5 +5,5 @@ import com.custom.app.core.model.User;
 import java.util.UUID;
 
 public interface UpdateUserUseCase {
-    User execute(User user);
+    User updateUser(UUID userId, User user);
 }

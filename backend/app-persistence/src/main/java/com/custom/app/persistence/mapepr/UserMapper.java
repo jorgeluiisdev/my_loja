@@ -25,14 +25,19 @@ public class UserMapper {
         }
         userEntity.setLogin(user.getLogin());
         userEntity.setPassword(user.getPassword());
+        userEntity.setRole(user.getRole());
         userEntity.setFirstName(user.getFirstName());
         userEntity.setLastName(user.getLastName());
         userEntity.setEmail(user.getEmail());
         userEntity.setPhone(user.getPhone());
+        userEntity.setRefreshTokenHash(user.getRefreshTokenHash());
 
-        ImageEntity image = this.mapper.toEntity(user.getProfileImage());
+        Image image = new Image();
+        image.setUserImageId(user.getUserImageId());
 
-        userEntity.setProfileImage(image);
+        ImageEntity imageEntity = this.mapper.toEntity(image);
+
+        userEntity.setUserImageId(imageEntity.getUserImageId());
 
         return userEntity;
     }
@@ -43,14 +48,20 @@ public class UserMapper {
         user.setId(userEntity.getId());
         user.setLogin(userEntity.getLogin());
         user.setPassword(userEntity.getPassword());
+        user.setRole(userEntity.getRole());
         user.setFirstName(userEntity.getFirstName());
         user.setLastName(userEntity.getLastName());
         user.setEmail(userEntity.getEmail());
         user.setPhone(userEntity.getPhone());
+        user.setRefreshTokenHash(userEntity.getRefreshTokenHash());
 
-        Image image = this.mapper.toDomain(userEntity.getProfileImage());
+        ImageEntity imageEntity = new ImageEntity();
 
-        user.setProfileImage(image);
+        imageEntity.setUserImageId(userEntity.getUserImageId());
+
+        Image image = this.mapper.toDomain(imageEntity);
+
+        user.setUserImageId(image.getUserImageId());
 
         return user;
     }

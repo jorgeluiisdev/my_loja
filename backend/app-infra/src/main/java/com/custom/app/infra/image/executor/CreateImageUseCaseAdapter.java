@@ -21,7 +21,12 @@ public class CreateImageUseCaseAdapter implements CreateImageUseCase {
     }
 
     @Override
-    public List<Image> createImage(List<Image> images) {
+    public Image createImage(Image image) {
+        return this.imageRepositoryAdapter.save(image);
+    }
+
+    @Override
+    public List<Image> createImages(List<Image> images) {
         return this.imageRepositoryAdapter.save(images);
     }
 }

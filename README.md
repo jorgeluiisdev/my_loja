@@ -12,5 +12,5 @@ DB_POSTGRES="my_vitrine" DB_USERNAME="postgres" DB_PASSWORD="sua_senha_aqui" doc
 #### E tenha certeza de estar usando o powershell `(recomendado)` para executar.
 
 ```` shell
-$env:DB_POSTGRES="my_vitrine" $env:DB_USERNAME="postgres" $env:DB_PASSWORD="sua_senha_aqui" docker compose up --build
+$env:DB_POSTGRES="my_vitrine"; $env:DB_USERNAME="postgres"; $env:DB_PASSWORD="sua_senha_aqui"; docker compose up --build
 ````

@@ -6,11 +6,12 @@ public class User {
     private UUID id;
     private String login;
     private String password;
+    private UserRole role;
     private String firstName;
     private String lastName;
     private String email;
     private String phone;
-    private Image profileImage;
+    private UUID userImageId;
     private String refreshTokenHash;
 
     public UUID getId() {
@@ -35,6 +36,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
     }
 
     public String getFirstName() {
@@ -69,12 +78,12 @@ public class User {
         this.phone = phone;
     }
 
-    public Image getProfileImage() {
-        return profileImage;
+    public UUID getUserImageId() {
+        return userImageId;
     }
 
-    public void setProfileImage(Image profileImage) {
-        this.profileImage = profileImage;
+    public void setUserImageId(UUID userImageId) {
+        this.userImageId = userImageId;
     }
 
     public String getRefreshTokenHash() {

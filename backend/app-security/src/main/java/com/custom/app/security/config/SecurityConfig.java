@@ -67,17 +67,34 @@ public class SecurityConfig {
                 }).authorizeHttpRequests(new Customizer<AuthorizeHttpRequestsConfigurer<org.springframework.security.config.annotation.web.builders.HttpSecurity>.AuthorizationManagerRequestMatcherRegistry>() {
                     @Override
                     public void customize(AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry authMatchers) {
+                        authMatchers.requestMatchers(HttpMethod.GET,
+                                "/",
+                                "/index.html",
+                                "/login",
+                                "/edit",
+                                "/assets/**",
+                                "/imgs/**",
+                                "/vite.svg",
+                                "/favicon.ico").permitAll();
+                        authMatchers.requestMatchers(HttpMethod.POST, "/api/v1/login").permitAll();
+                        authMatchers.requestMatchers(HttpMethod.DELETE, "/api/v1/logout");
+                        authMatchers.requestMatchers(HttpMethod.GET, "/api/v1/products/categorized-products").permitAll();
+                        authMatchers.requestMatchers(HttpMethod.POST, "/api/v1/products/create-product");
+                        authMatchers.requestMatchers(HttpMethod.PUT, "/api/v1/products/update-product");
                         authMatchers.requestMatchers(HttpMethod.GET, "/api/v1/products/list-all").permitAll();
+                        authMatchers.requestMatchers(HttpMethod.GET, "/api/v1/images/{uuid}").permitAll();
 
-                        //OPEN API
                         if (!List.of(env.getActiveProfiles()).contains("production")) {
                             authMatchers.requestMatchers(
                                     "/swagger-ui.html",
                                     "/swagger-ui/**",
                                     "/v3/api-docs",
-                                    "/v3/api-docs/**"
+                                    "/v3/api-docs/**",
+                                    "/api/v1/docs",
+                                    "/api/v1/docs/**"
                             ).permitAll();
                         }
+
                         authMatchers.anyRequest().authenticated();
                     }
                 }).build();

@@ -5,5 +5,6 @@ import com.custom.app.core.model.Image;
 import java.util.List;
 
 public interface CreateImageUseCase {
-    List<Image> createImage(List<Image> images);
+    Image createImage(Image image);
+    List<Image> createImages(List<Image> images);
 }

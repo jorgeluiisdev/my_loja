@@ -6,5 +6,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface GetUserUseCase {
-    Optional<User> execute(UUID userId);
+    Optional<User> findUserById(UUID userId);
+    Optional<User> findUserByLogin(String login);
 }

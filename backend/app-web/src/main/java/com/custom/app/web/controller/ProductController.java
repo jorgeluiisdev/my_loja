@@ -10,6 +10,7 @@ import com.custom.app.web.dto.response.ProductResponse;
 import com.custom.app.web.services.ProductServices;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +41,8 @@ public class ProductController {
 
     @Operation(
             summary = "Cria um novo produto com imagens",
-            description = "Envia os dados do produto no campo 'productJson' (formato JSON), e uma ou mais imagens no campo 'images'."
-//            security = @SecurityRequirement(name = "bearerAuth") //Precisa de autenticação
+            description = "Envia os dados do produto no campo 'productJson' (formato JSON), e uma ou mais imagens no campo 'images'.",
+            security = @SecurityRequirement(name = "bearerAuth")
     )
     @PostMapping(value = "/create-product", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ProductResponse> createProduct(@ModelAttribute @Valid CreateProductForm form) {
@@ -58,7 +59,8 @@ public class ProductController {
 
     @Operation(
             summary = "Atualiza um produto anteriormente criado",
-            description = "Envia dos dados do produto alvo e retorna o produto atualizado."
+            description = "Envia dos dados do produto alvo e retorna o produto atualizado.",
+            security = @SecurityRequirement(name = "bearerAuth")
     )
     @PutMapping(value = "/update-product", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void> updateProduct(@ModelAttribute @Valid UpdateProductForm form) {

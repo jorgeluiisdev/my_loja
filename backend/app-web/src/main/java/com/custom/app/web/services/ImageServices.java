@@ -157,7 +157,7 @@ public class ImageServices {
     }
 
     public void saveImage(List<Image> images) {
-        this.createImageUseCaseAdapter.createImage(images);
+        this.createImageUseCaseAdapter.createImages(images);
     }
 
     public record ImageResource(Resource resource, MediaType mediaType) {}
@@ -166,7 +166,6 @@ public class ImageServices {
         Optional<Image> imageOptional = this.getImageUseCaseAdapter.findById(imageId);
         if (imageOptional.isEmpty()) {
             throw new ResourceAccessException("Erro ao localizar imagem.");
-            //retornar ou imagem de erro, ou só o erro.
         }
 
         Image image = imageOptional.get();

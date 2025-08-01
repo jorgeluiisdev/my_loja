@@ -6,7 +6,6 @@ import com.custom.app.persistence.entity.CategoryEntity;
 import com.custom.app.persistence.mapepr.CategoryMapper;
 import com.custom.app.persistence.repository.CategoryJpaRepository;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -30,7 +29,6 @@ public class CategoryRepositoryAdapter implements CategoryRepository {
         this.mapper = categoryMapper;
     }
 
-    @Transactional
     @Override
     public Category save(Category category) {
         if (category.getId() != null) {
@@ -41,7 +39,6 @@ public class CategoryRepositoryAdapter implements CategoryRepository {
         return this.mapper.toDomain(savedCategoryEntity);
     }
 
-    @Transactional
     @Override
     public Category update(UUID existingCategoryId, Category category) {
         if (existingCategoryId == null || !existingCategoryId.equals(category.getId())) {
@@ -52,7 +49,6 @@ public class CategoryRepositoryAdapter implements CategoryRepository {
         return this.mapper.toDomain(savedCategoryEntity);
     }
 
-    @Transactional
     @Override
     public void delete(UUID existingCategoryId) {
         if (existingCategoryId == null) {

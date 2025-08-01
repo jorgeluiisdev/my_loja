@@ -1,7 +1,7 @@
 services:
   db-postgres:
     image: postgres:16
-    container_name: db-vitrine
+    container_name: app-db-vitrine
     environment:
       POSTGRES_DB: ${DB_POSTGRES}
       POSTGRES_USER: ${DB_USERNAME}
@@ -23,7 +23,7 @@ services:
 #      INIT_USER_LOGIN: ${INIT_USER_LOGIN}
 #      INIT_USER_PASSWORD: ${INIT_USER_PASSWORD}
       #Spring profile e datasource
-      SPRING_PROFILES_ACTIVE: production
+      SPRING_PROFILES_ACTIVE: development
       SPRING_DATASOURCE_URL: jdbc:postgresql://db-postgres:5432/${DB_POSTGRES}
     ports:
       - "8080:8080"

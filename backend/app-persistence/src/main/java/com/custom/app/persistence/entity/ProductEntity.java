@@ -27,6 +27,9 @@ public class ProductEntity {
     @JoinColumn(name = "product_id")
     private List<ImageEntity> images = new ArrayList<>();
 
+    @Column(name = "refresh_token_hash", length = 512)
+    private String refreshTokenHash;
+
     public UUID getId() {
         return id;
     }
@@ -81,5 +84,13 @@ public class ProductEntity {
 
     public void setImages(List<ImageEntity> images) {
         this.images = images;
+    }
+
+    public String getRefreshTokenHash() {
+        return refreshTokenHash;
+    }
+
+    public void setRefreshTokenHash(String refreshTokenHash) {
+        this.refreshTokenHash = refreshTokenHash;
     }
 }

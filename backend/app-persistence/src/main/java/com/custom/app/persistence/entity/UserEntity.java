@@ -1,5 +1,6 @@
 package com.custom.app.persistence.entity;
 
+import com.custom.app.core.model.UserRole;
 import jakarta.persistence.*;
 
 import java.util.UUID;
@@ -9,8 +10,11 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+    @Column(nullable = false, unique = true)
     private String login;
     private String password;
+    @Column(nullable = false)
+    private UserRole role;
     private String firstName;
     private String lastName;
     private String email;
@@ -19,9 +23,8 @@ public class UserEntity {
     @Column(name = "refresh_token_hash", length = 512)
     private String refreshTokenHash;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "user_image_id")
-    private ImageEntity profileImage;
+    @Column(name = "user_image_id")
+    private UUID userImageId;
 
     public UUID getId() {
         return id;
@@ -41,6 +44,14 @@ public class UserEntity {
 
     public String getPassword() {
         return password;
+    }
+
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
     }
 
     public void setPassword(String password) {
@@ -87,11 +98,11 @@ public class UserEntity {
         this.refreshTokenHash = refreshTokenHash;
     }
 
-    public ImageEntity getProfileImage() {
-        return profileImage;
+    public UUID getUserImageId() {
+        return userImageId;
     }
 
-    public void setProfileImage(ImageEntity profileImage) {
-        this.profileImage = profileImage;
+    public void setUserImageId(UUID userImageId) {
+        this.userImageId = userImageId;
     }
 }

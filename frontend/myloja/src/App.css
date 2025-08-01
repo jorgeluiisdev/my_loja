@@ -58,11 +58,11 @@
 /* Products */
 
 .product-card {
-    width: 16vw;
+    width: 15vw;
     border: 1px solid #ccc;
     border-radius: 6px;
-    margin-left: 5vh;
     padding: 0.5vh;
+    flex: 0 0 auto; /* Impede quebra de linha e mantém largura fixa */
 }
 
 .product-content {
@@ -98,6 +98,41 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.product-list {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.image-thumbnail-list {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.thumbnail {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.thumbnail:hover,
+.thumbnail.active {
+    opacity: 1;
+    transform: scale(1);
+    border: 2px solid #808080;
 }
 
 

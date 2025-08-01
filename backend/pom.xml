@@ -32,7 +32,7 @@
         <spring.boot.version>3.5.3</spring.boot.version>
         <jakarta.validation.version>3.1.1</jakarta.validation.version>
         <postgres.sql.version>42.7.7</postgres.sql.version>
-        <flywaydb.core>11.8.2</flywaydb.core>
+        <flywaydb.core>11.10.4</flywaydb.core>
 
         <!-- Security -->
         <auth0.version>4.5.0</auth0.version>
@@ -75,6 +75,12 @@
             <dependency>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-core</artifactId>
+                <version>${flywaydb.core}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-database-postgresql</artifactId>
                 <version>${flywaydb.core}</version>
             </dependency>
 

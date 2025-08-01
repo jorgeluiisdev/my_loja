@@ -6,9 +6,9 @@ import com.custom.app.persistence.entity.UserEntity;
 import com.custom.app.persistence.mapepr.UserMapper;
 import com.custom.app.persistence.repository.UserJpaRepository;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,7 +30,6 @@ public class UserRepositoryAdapter implements UserRepository {
         this.mapper = userMapper;
     }
 
-    @Transactional
     @Override
     public User save(User user) {
         if (user.getId() != null) {
@@ -41,7 +40,6 @@ public class UserRepositoryAdapter implements UserRepository {
         return this.mapper.toDomain(savedEntity);
     }
 
-    @Transactional
     @Override
     public User update(UUID existingUserId, User user) {
         if (existingUserId == null || !existingUserId.equals(user.getId())) {
@@ -52,7 +50,6 @@ public class UserRepositoryAdapter implements UserRepository {
         return this.mapper.toDomain(savedEntity);
     }
 
-    @Transactional
     @Override
     public void delete(UUID existingUserId) {
         if (existingUserId == null) {
@@ -69,6 +66,7 @@ public class UserRepositoryAdapter implements UserRepository {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
     @Override
     public Optional<User> findById(UUID userId) {
         return this.jpaRepository.findById(userId)

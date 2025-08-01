@@ -1,20 +1,15 @@
 import './App.css'
-import { useState, useEffect, useRef } from 'react'
-import { motion as _motion } from 'framer-motion';
+import { useState, useEffect } from 'react'
 import Nav from './componets/Nav'
 import Banner from './componets/Banner'
 import ProductCard from './componets/Productcard'
 import Footer from './componets/Footer'
-import {getAllProducts, getImageUrl} from "./services/RouteServices.jsx";
+import { getAllProducts, getImageUrl } from './services/RouteServices.jsx'
 
 function App() {
-    const carousel = useRef([]);
-    const [width, setWidth] = useState(0)
     const [apiProducts, setProducts] = useState([]);
 
     useEffect(() => {
-        setWidth(carousel.current?.scrollWidth - carousel.current?.offsetWidth)
-
         async function fetchProducts() {
             try {
                 const data = await getAllProducts();
@@ -27,7 +22,6 @@ function App() {
 
         fetchProducts();
     }, []);
-
 
     return (
         <div>
@@ -45,34 +39,23 @@ function App() {
                         <h2 className="section-title">
                             {category.categoryName}
                         </h2>
-
-                        <_motion.div
-                            ref={carousel}
-                            className="product-container"
-                            whileTap={{ cursor: "grabbing" }}
-                        >
-                            <_motion.div
-                                className="product-list"
-                                drag="x"
-                                dragConstraints={{ right: 0, left: -width }}
-                            >
-                                {category.products.map((product, index) => {
-                                    const imageUrls = product.imagens.map(img => getImageUrl(img.id));
-                                    return (
-                                        <ProductCard
-                                            key={index}
-                                            images={imageUrls}
-                                            title={product.title}
-                                            sku={product.sku}
-                                            price={new Intl.NumberFormat('pt-BR', {
-                                                style: "currency",
-                                                currency: "BRL",
-                                            }).format(Number(product.price))}
-                                        />
-                                    );
-                                })}
-                            </_motion.div>
-                        </_motion.div>
+                        <div className="product-list">
+                            {category.products.map((product, index) => {
+                                const imageUrls = product.imagens?.map(img => getImageUrl(img.id)) || [];
+                                return (
+                                    <ProductCard
+                                        key={index}
+                                        images={imageUrls}
+                                        title={product.title}
+                                        sku={product.sku}
+                                        price={new Intl.NumberFormat('pt-BR', {
+                                            style: "currency",
+                                            currency: "BRL",
+                                        }).format(Number(product.price))}
+                                    />
+                                );
+                            })}
+                        </div>
                     </section>
                 ))}
             </main>

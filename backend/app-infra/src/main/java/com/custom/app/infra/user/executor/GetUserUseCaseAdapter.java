@@ -20,7 +20,12 @@ public class GetUserUseCaseAdapter implements GetUserUseCase {
     }
 
     @Override
-    public Optional<User> execute(UUID userId) {
+    public Optional<User> findUserById(UUID userId) {
         return this.userRepository.findById(userId);
+    }
+
+    @Override
+    public Optional<User> findUserByLogin(String login) {
+        return this.userRepository.findByLogin(login);
     }
 }

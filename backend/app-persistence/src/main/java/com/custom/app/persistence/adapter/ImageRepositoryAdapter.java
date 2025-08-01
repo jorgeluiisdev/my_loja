@@ -8,7 +8,6 @@ import com.custom.app.persistence.repository.ImageJpaRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,7 +29,16 @@ public class ImageRepositoryAdapter implements ImageRepository {
         this.imageMapper = imageMapper;
     }
 
-    @Transactional
+    @Override
+    public Image save(Image image) {
+        return Optional.ofNullable(image)
+                .filter(img -> img.getId() != null)
+                .map(this.imageMapper::toEntity)
+                .map(this.jpaRepository::save)
+                .map(this.imageMapper::toDomain)
+                .orElseThrow(() -> new IllegalArgumentException("Id da imagem não deve ser null"));
+    }
+
     @Override
     public List<Image> save(List<Image> images) {
         for (Image img : images) {
@@ -50,7 +58,6 @@ public class ImageRepositoryAdapter implements ImageRepository {
                 .toList();
     }
 
-    @Transactional
     @Override
     public void delete(UUID existingImageId) {
         if (existingImageId == null) {
@@ -65,7 +72,6 @@ public class ImageRepositoryAdapter implements ImageRepository {
                 .map(this.imageMapper::toDomain);
     }
 
-    @Transactional
     @Override
     public List<Image> listImage(UUID existingProductId) {
         return this.jpaRepository.findByProductId(existingProductId)
